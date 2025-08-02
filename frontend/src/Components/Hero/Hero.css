@@ -1,0 +1,192 @@
+.hero{
+    height: 100vh;
+    background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
+    display: flex;
+}
+
+.hero-left{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding-left: 180px;
+    line-height: 1.1;
+}
+
+.hero-left h2{
+    color: #090909;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.hero-left p{
+    color: #171717;
+    font-size: 100px;
+    font-weight: 700;
+}
+
+.hero-hand-icon{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.hero-hand-icon img{
+    width: 105px;
+}
+
+/* .hero-latest-bth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 310px;
+    height: 70px;
+    border-radius: 75px;
+    margin-top: 30px;
+    background-color: #ff4141;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+} */
+
+.hero-latest-bth {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #007bff;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 18px;
+  width: fit-content;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-latest-bth:hover {
+  background-color: #0056b3;
+}
+
+.hero-latest-bth img {
+  width: 24px;
+  height: auto;
+}
+
+.hero-right{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .hero-latest-bth:hover{
+    transform: scale(1.05);
+    transition: 0.1s;
+    cursor: pointer;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Hero.css */
+
+/* .hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 10%;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  flex-wrap: wrap;
+}
+
+.hero-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-left h2 {
+  font-size: 20px;
+  color: #007bff;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero-left > div {
+  margin-bottom: 30px;
+}
+
+.hero-hand-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-hand-icon p {
+  font-size: 40px;
+  font-weight: bold;
+  color: #222;
+  margin: 0;
+}
+
+.hero-hand-icon img {
+  width: 50px;
+  height: auto;
+}
+
+.hero-left p {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.hero-latest-bth {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #007bff;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 18px;
+  width: fit-content;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-latest-bth:hover {
+  background-color: #0056b3;
+}
+
+.hero-latest-bth img {
+  width: 24px;
+  height: auto;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+}
+
+.hero-right img {
+  max-width: 100%;
+  height: auto;
+} */
