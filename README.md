@@ -1,9 +1,11 @@
 # PopnShop
 E-commerce site with frontend, backend, and admin panel.
 
-1.**frontend**: The UI of the project
-2.**backend**: Contains all API endpoints the frontend uses to connect with the database
-3.**admin panel**: Allows the admin to insert or remove products from the frontend
+**frontend**: The UI of the project
+
+**backend**: Contains all API endpoints the frontend uses to connect with the database
+
+**admin panel**: Allows the admin to insert or remove products from the frontend
 
 ## Database Setup
 This project uses MongoDB Atlas.  
