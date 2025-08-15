@@ -28,7 +28,11 @@ import { ShopContext } from '../../Context/ShopContext'
         </ul>
 
         <div className="nav-login-cart">
-            <button>  <Link style={{textDecoration: 'none'}} to = '/login'>Login</Link>  </button>
+
+            {localStorage.getItem('auth-token') // if auth-token then logout will be displayed else the login button
+            ?<button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>
+            :<button>  <Link style={{textDecoration: 'none'}} to = '/login'>Login</Link>  </button>} 
+
             <Link style={{textDecoration: 'none'}} to = '/cart'>  <img src= {cart_icon} alt="" />  </Link>
             <div className="nav-cart-count">{getTotalCartItems()}</div>
         </div>

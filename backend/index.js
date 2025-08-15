@@ -9,6 +9,8 @@ const multer = require("multer");// initilize multer
 const path = require ("path"); //include path from the express server, using this path we get access to our backend directory in our express app
 const cors = require("cors");
 const { type } = require("os");
+const { error } = require("console");
+
 require('dotenv').config();
 
 
@@ -172,7 +174,184 @@ app.get('/getproduct', async (req,res) => {
 
 })
 
+// ================= Schema for USER MODEL =================
 
+const Users = mongoose.model('Users',{
+    name:{
+        type:String,
+    },
+    email:{
+        type:String,
+        unique:true,
+    },
+    password:{
+        type:String,
+    },
+    cartData:{
+        type:Object,
+    },
+    date:{
+        type:Date,
+        default:Date.now,
+    }
+})
+
+
+// ================= API Endpoint for registering the user =================
+
+app.post('/signup', async (req,res)=>{
+
+    let check = await Users.findOne({email:req.body.email}); 
+
+    if(check){
+        return res.status(400).json({success:false, errors:"existing user found with same email ID"});
+    }
+
+    let cart = {}; // empty object
+
+    for(let i = 0; i<300; i++){ // create an empty cart
+        cart[i] = 0;
+
+    }
+
+    const user = new Users({
+        name:req.body.username,
+        email:req.body.email,
+        password:req.body.password,
+        cartData:cart,
+    }) // user created 
+
+    //save the user into database now
+
+    await user.save();
+
+    // use jwt authentication
+
+    const data = { // create token using data object where we have user key and in this user key we have one obj with id and user id
+        user:{
+            id:user.id
+        }
+    }
+
+    const token = jwt.sign(data,'secret_ecom'); // token generated using jwt sign method and secret_ecom so token isnt redable
+
+    res.json({success:true,token})
+
+})
+
+// ==================== Endpoint for user login ====================
+
+
+app.post('/login',async (req,res) =>{
+
+    let user = await Users.findOne({email:req.body.email}); 
+    if(user){
+        const passCompare = req.body.password === user.password; //true or false in passCompare
+
+        if(passCompare){
+            const data = {
+                user:{
+                    id:user.id
+                }
+            }
+            const token = jwt.sign(data,'secret_ecom');
+            res.json({success:true, token});
+        }else{
+            res.json({success:false, error:"Wrong Password"});
+        }
+    }else{
+        res.json({success:false, error:"Wrong Email ID"});
+    }
+
+})
+
+// ==================== creating endpoint for new collection data ====================
+
+app.get('/newcollections', async (req,res) => {
+ 
+    let products = await Product.find({}); // stored all Product
+    let newcollection = products.slice(1).slice(-8); // we get recently added 8 products
+    console.log("NewCollections Fetched");
+    res.send(newcollection);
+
+})
+
+// ==================== creating endpoint for popular in women ====================
+
+app.get('/popularinwomen', async (req,res)=>{
+
+    let products = await Product.find({category:"women"})
+    let popular_in_women = products.slice(0,4);
+    console.log("Popular in women fetched");
+    res.send(popular_in_women);
+    
+})
+
+
+// ==================== Creating middleware to fetch user ====================
+
+
+    const fetchUser = async (req,res,next)=>{ // like konsa user accessing which user cart
+        
+        const token = req.header('auth-token'); 
+        if(!token){
+            res.status(401).send({errors:"Please authenticate using valid token"});
+        }else{
+            try{
+                const data = jwt.verify(token,'secret_ecom'); //using jwt library .verify function
+                req.user = data.user; // decode token
+                next();
+            }catch(error){
+                res.status(401).send({errors:"please authenticate using a valid token"});
+            }
+        }
+
+    }
+
+
+// ==================== creating endpoint for adding products in cart data ====================
+
+app.post('/addtocart',fetchUser, async (req,res) => {
+    
+    console.log("added",req.body.itemId);
+    let userData = await Users.findOne({_id: req.user.id}); //entire id will be stored in the userData
+    userData.cartData[req.body.itemId] +=1;
+
+    await Users.findOneAndUpdate({_id:req.user.id}, {cartData:userData.cartData});
+
+    res.send("Added");
+
+})
+
+// ==================== creating endpoint for removing products in cart data ====================
+
+app.post('/removefromcart', fetchUser, async (req,res) => { 
+
+    console.log("removed",req.body.itemId);
+
+    let userData = await Users.findOne({_id: req.user.id}); //entire id will be stored in the userData
+
+    if(userData.cartData[req.body.itemId]>0){
+        userData.cartData[req.body.itemId] -=1;
+    }
+    await Users.findOneAndUpdate({_id:req.user.id}, {cartData:userData.cartData});
+    res.send("Removed")
+
+})
+
+
+// ==================== get cart ====================
+
+app.post('/getcart', fetchUser, async (req,res) => { 
+
+    console.log("GetCart");
+    let userData = await Users.findOne({_id:req.user.id}); // we get using the middle ware
+    res.json(userData.cartData);
+
+})
+
+
+ 
 // ==================== Start the Server ====================
 
 app.listen(port,(error)=>{
