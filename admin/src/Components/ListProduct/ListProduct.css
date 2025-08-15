@@ -1,0 +1,81 @@
+.list-product {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.list-product h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: 700;
+}
+
+.listproduct-format-main {
+  display: flex;
+  grid-template-columns: 80px 2.5fr 1.5fr 1.5fr 1.5fr 50px; /* wider columns */
+  align-items: center;
+  gap: 25px; /* more space horizontally */
+  font-weight: 600;
+  color: #555;
+  padding: 12px 0; /* vertical padding */
+  border-bottom: 2px solid #ccc; /* visually separate header */
+  background-color: #f9f9f9; /* subtle background for header */
+}
+
+.listproduct-format-main p {
+  margin: 0;
+  padding-left: 8px; /* add horizontal padding for text */
+}
+
+.listproduct-allproduct {
+  margin-top: 20px; /* more space below header */
+}
+
+.listproduct-format {
+  display: grid;
+  grid-template-columns: 80px 2.5fr 1.5fr 1.5fr 1.5fr 50px; /* match header */
+  align-items: center;
+  gap: 25px; /* same horizontal spacing */
+  padding: 14px 0; /* more vertical padding */
+  border-bottom: 1px solid #ddd;
+  font-weight: 500;
+  color: #444;
+}
+
+.listproduct-format p {
+  margin: 0;
+  padding-left: 8px; /* match header padding */
+}
+
+.listproduct-product-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 4px; /* a bit of padding inside image */
+}
+
+.listproduct-remove-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  filter: brightness(0.7);
+  transition: filter 0.2s ease;
+}
+
+.listproduct-remove-icon:hover {
+  filter: brightness(1);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 10px 0;
+}
