@@ -13,20 +13,33 @@ Please set up your own MongoDB Atlas cluster and update the `.env` file in the `
 
 ## How to Run
 1. Clone the repository:
+
     (in your terminal)
-    git clone <your-repo-link>
+   
+    git clone https://github.com/devanshu-bisht23/PopNShop
 
 2. Navigate to frontend:
+
     cd ../frontend
+   
     npm install
+   
     npm start
    
 3. Navigate to backend:
+
     cd backend
+   
     npm install
+   
     node index.js
+   
 
 4. Navigate to admin panel:
+
     cd ../admin
+    
     npm install
+    
     npm run dev
+    
