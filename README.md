@@ -20,7 +20,7 @@ Please set up your own MongoDB Atlas cluster and update the `.env` file in the `
 
 2. Navigate to frontend:
 
-    cd ../frontend
+    cd frontend
    
     npm install
    
@@ -37,7 +37,7 @@ Please set up your own MongoDB Atlas cluster and update the `.env` file in the `
 
 4. Navigate to admin panel:
 
-    cd ../admin
+    cd admin
     
     npm install
     
